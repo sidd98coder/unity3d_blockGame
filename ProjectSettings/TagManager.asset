@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacle
+  - Points
+  - Environment
+  - FinishLine
+  - Walls
   layers:
   - Default
   - TransparentFX
@@ -14,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - ground
   - 
   - 
   - 

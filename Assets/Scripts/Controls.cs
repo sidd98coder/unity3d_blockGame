@@ -4,8 +4,8 @@ public class Controls : MonoBehaviour
 {
     public Rigidbody rb;
 
-    public float forwardForce = 2000f;
-    public float sideForce = 900f;
+    public float forwardForce = 4000f;
+    public float sideForce = 120f;
     // Start is called before the first frame update
     /*void Start()
     {
@@ -19,11 +19,11 @@ public class Controls : MonoBehaviour
         
         if(Input.GetKey("right"))
         {
-            rb.AddForce(sideForce*Time.deltaTime,0,0);
+            rb.AddForce(sideForce*Time.deltaTime,0,0, ForceMode.VelocityChange);
         }
         if(Input.GetKey("left"))
         {
-            rb.AddForce(-sideForce*Time.deltaTime,0,0);
+            rb.AddForce(-sideForce*Time.deltaTime,0,0,ForceMode.VelocityChange);
         }
         if(Input.GetKey("up"))
         {
