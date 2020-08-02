@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/cubeGameScene.unity
+- path: Assets/Scenes/FPPscene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
