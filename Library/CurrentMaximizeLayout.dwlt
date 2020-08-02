@@ -21,10 +21,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 878, y: 492}
-  m_MaxSize: {x: 16003, y: 14042}
+  m_MinSize: {x: 880, y: 492}
+  m_MaxSize: {x: 16005, y: 14042}
   vertical: 0
-  controlID: 29565
+  controlID: 3123
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,10 +135,10 @@ MonoBehaviour:
     y: 0
     width: 1043
     height: 635
-  m_MinSize: {x: 603, y: 492}
-  m_MaxSize: {x: 12003, y: 14042}
+  m_MinSize: {x: 605, y: 492}
+  m_MaxSize: {x: 12005, y: 14042}
   vertical: 1
-  controlID: 29566
+  controlID: 3124
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,10 +161,10 @@ MonoBehaviour:
     y: 0
     width: 1043
     height: 357
-  m_MinSize: {x: 603, y: 221}
-  m_MaxSize: {x: 12003, y: 4021}
+  m_MinSize: {x: 605, y: 221}
+  m_MaxSize: {x: 12005, y: 4021}
   vertical: 0
-  controlID: 29567
+  controlID: 3125
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -218,10 +218,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 309}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: b2f8fdff70f9fdffb427feff1a32feff2432feff0486feffe842ffff02d8ffffe2dbffff86e0ffffdce7ffff42fbffff664400007c440000fe440000c648000040490000446900005a690000dc690000
+      m_ExpandedIDs: 60fbffffc8380000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -356,13 +356,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.16219546, y: -0.00624245, z: 0.0009744854, w: 0.9868544}
+    m_Target: {x: 0.011400417, y: -0.0033179107, z: -0.0000137171055, w: 1.0000435}
     speed: 2
-    m_Value: {x: 0.16217689, y: -0.0062417355, z: 0.0009743739, w: 0.9867414}
+    m_Value: {x: 0.011399118, y: -0.0033175326, z: -0.000013715542, w: 0.99992955}
   m_Size:
-    m_Target: 144.47574
+    m_Target: 218.42252
     speed: 2
-    m_Value: 144.47574
+    m_Value: 218.42252
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -478,21 +478,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/cubeGame scripts
     m_Globs: []
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/cubeGame scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: F:\SPACEJOY\practice_codes\unity3d_blockGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 20390000
-    m_LastClickedID: 14624
-    m_ExpandedIDs: 000000001a39000000ca9a3b
+    m_SelectedIDs: 283a0000
+    m_LastClickedID: 14888
+    m_ExpandedIDs: 000000000e3a00001a3a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -520,7 +520,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001a39000000ca9a3b
+    m_ExpandedIDs: 000000000e3a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -545,9 +545,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: b2f8fdff
-    m_LastClickedInstanceID: -132942
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 8ac6ffff
+    m_LastClickedInstanceID: -14710
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -620,8 +620,8 @@ MonoBehaviour:
     y: 0
     width: 323
     height: 635
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -658,8 +658,8 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -132942
-  m_LastVerticalScrollValue: 720
+  m_LastInspectedObjectInstanceID: -14710
+  m_LastVerticalScrollValue: 462
   m_AssetGUID: 
   m_InstanceID: 0
   m_LockTracker:
