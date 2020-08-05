@@ -11,6 +11,7 @@ public class playerControls : MonoBehaviour
     private float animeDuration = 2f;
     //private Transform groundCheckPos; bool isGrounded; float radius = 0.3f; LayerMask layer;
     private Vector3 move;
+    private Transform playerposition;
     //private Transform groundCheckPosi;
     
    
@@ -24,6 +25,7 @@ public class playerControls : MonoBehaviour
         //groundCheckPos = gameObject.GetComponentInChildren<Transform>().transform;
         controller = GetComponent<CharacterController>();
         //groundCheckPosi = gameObject.GetComponentInChildren<Transform>().transform;
+        playerposition = gameObject.GetComponent<Transform>().transform;
     }
     void Update()
     {
@@ -85,6 +87,10 @@ public class playerControls : MonoBehaviour
         
         move.y = verticalVelocity;
         
+        if((int)playerposition.position.z % 100 == 0)
+        {
+            forwardSpeed += 0.25f;
+        }
         move.z = forwardSpeed;
         
         controller.Move(move*Time.deltaTime);

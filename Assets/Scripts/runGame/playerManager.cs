@@ -9,11 +9,17 @@ public class playerManager : MonoBehaviour
     public Text scoreText;
     private Transform Playerpos;
     private float animeDuration = 2f;
+    public Text highscore;
+    int HighScore;
+    
+    //float forwardForce = 2000f;
     
 
     void Start()
     {
+        highscore.text = "highscore : " + PlayerPrefs.GetInt("HighScore", 0).ToString("0");
         Playerpos = this.gameObject.transform;
+        //velocity = gameObject.GetComponent<Rigidbody>().velocity;
     }
 
     
@@ -28,7 +34,7 @@ public class playerManager : MonoBehaviour
             statusText.text = "";
 
         }
-        scoreText.text = Playerpos.position.z.ToString("0");  //score
+        scoreText.text = Playerpos.position.z.ToString("0");                //score
         /*if (Playerpos.position.y <= 1f )
         {
             print("Out Of Y Position !!!!");
@@ -40,8 +46,10 @@ public class playerManager : MonoBehaviour
             gameOver();
         }*/
 
+        
+
     }
-    private void OnCollisionEnter(Collision collision)  //collision
+    private void OnCollisionEnter(Collision collision)                      //collision
     {
         if (collision.gameObject.tag == "Obstacle")
         {
@@ -81,8 +89,14 @@ public class playerManager : MonoBehaviour
     void gameOver()
     {
         this.gameObject.GetComponent<playerControls>().enabled = false;
-        statusText.text = "Game Over!!";
-        Destroy(this.gameObject, 1f);
         
+        if ((int)Playerpos.position.z > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", (int)Playerpos.position.z);
+            highscore.text = "highscore : " + Playerpos.position.z.ToString("0");
+        }
+        Destroy(this.gameObject, 1f);
+        statusText.text = "Game Over!!";
+
     }
 }
