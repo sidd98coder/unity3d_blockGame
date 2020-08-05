@@ -9,6 +9,8 @@ TagManager:
   - Environment
   - FinishLine
   - Walls
+  - Tile
+  - groundCheck
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - 
   - 
   - ground
-  - 
+  - Tile
   - 
   - 
   - 

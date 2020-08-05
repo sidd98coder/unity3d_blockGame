@@ -5,7 +5,7 @@ public class Controls : MonoBehaviour
     public Rigidbody rb;
 
     public float forwardForce = 4000f;
-    public float sideForce = 120f;
+    public float sideForce = 100f;
     // Start is called before the first frame update
     /*void Start()
     {

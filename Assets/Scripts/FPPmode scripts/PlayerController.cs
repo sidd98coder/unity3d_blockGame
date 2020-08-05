@@ -12,12 +12,12 @@ public class PlayerController : MonoBehaviour
     bool isGrounded=true;
     public Transform groundCheckObject;
     public LayerMask groundCheckLayer;
-    public float groundDistance=0.2f;
+    public float sphereRadius=0.5f;
     public float jumpHeight = 0.1f;
 
     void Update()
     {
-       isGrounded = Physics.CheckSphere(groundCheckObject.position, groundDistance, groundCheckLayer);
+       isGrounded = Physics.CheckSphere(groundCheckObject.position, sphereRadius, groundCheckLayer);
         if (isGrounded && velocity.y<0)
         {
             velocity.y = 0f;

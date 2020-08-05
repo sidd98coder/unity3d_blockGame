@@ -7,7 +7,7 @@ public class SceneSwitcher : MonoBehaviour
 {
     public void SwitchScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneName/*, LoadSceneMode.Single*/);
         //Application.LoadLevel(sceneName);
         //
     }
@@ -16,4 +16,8 @@ public class SceneSwitcher : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit();
     }
+    /*public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene.name);
+    }*/
 }
