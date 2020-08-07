@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 881, y: 492}
   m_MaxSize: {x: 16006, y: 14042}
   vertical: 0
-  controlID: 115
+  controlID: 19078
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_MinSize: {x: 605, y: 492}
   m_MaxSize: {x: 12005, y: 14042}
   vertical: 1
-  controlID: 116
+  controlID: 19079
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 605, y: 221}
   m_MaxSize: {x: 12005, y: 4021}
   vertical: 0
-  controlID: 95
+  controlID: 19052
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -221,21 +221,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4cf3feff4a47ffff6ee3ffff90eaffff0cf8ffff62fbffffae3700007e3a0000e23c0000ee3c0000
+      m_ExpandedIDs: 70edfdff32d3feff8cd5feff90e6feff24e7feffa0e7feffe6e7feff2ce8fefff4fdfeff8a41ffff36a8ffff72dcffff38e9fffff2f8ffff62fbffffb6370000be370000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: floor1(Clone)
-        m_OriginalName: floor1(Clone)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -57516
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 5}
       m_SearchString: 
@@ -307,9 +307,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 35.929424, y: -152.39769, z: 252.56921}
+    m_Target: {x: 6.4877415, y: -7.6048512, z: 14.760189}
     speed: 2
-    m_Value: {x: 35.929424, y: -152.39769, z: 252.56921}
+    m_Value: {x: 6.4877415, y: -7.6048512, z: 14.760189}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -356,13 +356,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.2869999, y: 0.06809523, z: -0.023745982, w: 0.95591587}
+    m_Target: {x: 0.3661739, y: 0.12823, z: -0.05434017, w: 0.9208751}
     speed: 2
-    m_Value: {x: 0.28680712, y: 0.06804948, z: -0.02373003, w: 0.9552737}
+    m_Value: {x: 0.3659014, y: 0.12813458, z: -0.05429973, w: 0.9201898}
   m_Size:
-    m_Target: 167.80305
+    m_Target: 28.24549
     speed: 2
-    m_Value: 167.80305
+    m_Value: 28.24549
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -490,9 +490,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 23}
-    m_SelectedIDs: 68380000
-    m_LastClickedID: 14440
-    m_ExpandedIDs: 00000000523800006c38000000ca9a3b
+    m_SelectedIDs: a8380000
+    m_LastClickedID: 14504
+    m_ExpandedIDs: 000000009c38000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -520,7 +520,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000052380000
+    m_ExpandedIDs: 000000009c38000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -545,9 +545,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: ce370000
-    m_LastClickedInstanceID: 14286
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 36a8ffff
+    m_LastClickedInstanceID: -22474
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -620,8 +620,8 @@ MonoBehaviour:
     y: 0
     width: 391
     height: 635
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -659,7 +659,7 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 14286
+  m_LastInspectedObjectInstanceID: -22474
   m_LastVerticalScrollValue: 0
   m_AssetGUID: 
   m_InstanceID: 0

@@ -15,6 +15,7 @@ TagManager:
   - candy
   - coin
   - spawnCheck
+  - swipeCheck
   layers:
   - Default
   - TransparentFX

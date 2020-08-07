@@ -64,7 +64,7 @@ public class SpawnManager : MonoBehaviour
             transform.position += transform.TransformDirection(new Vector3(0.0f, 0.0f, 16f));
 
             tileHolderPosition.Rotate(0, 0, 0, Space.Self);
-            go = Instantiate(Path[1], tileHolderPosition.position, tileHolderPosition.rotation) as GameObject;
+            go = Instantiate(Path[0], tileHolderPosition.position, tileHolderPosition.rotation) as GameObject;
 
 
         }
