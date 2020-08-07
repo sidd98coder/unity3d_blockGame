@@ -50,14 +50,15 @@ public class TileManager : MonoBehaviour
         GameObject go;
         if (tileIndex == -1)
         {
-            go = Instantiate(prefabs[randomPrefabIndex()]) as GameObject;
+            
+            go = Instantiate(prefabs[randomPrefabIndex()]) as GameObject;           //dynamically generate scalable tile
         }
         else
         {
             go = Instantiate(prefabs[tileIndex]) as GameObject;
         }
         go.transform.SetParent(transform);
-        go.transform.position = Vector3.forward * Zpos;
+        go.transform.position = Vector3.forward * Zpos;         //work on
         Zpos += tileLength;
         activeList.Add(go);
     }
@@ -78,6 +79,7 @@ public class TileManager : MonoBehaviour
         {
             randomIndex = Random.Range(0, prefabs.Length);
         }
+        lastPrefabIndex = randomIndex;
         return randomIndex;
     }
 }

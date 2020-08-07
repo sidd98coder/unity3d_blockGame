@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class playerControls : MonoBehaviour
@@ -13,6 +14,8 @@ public class playerControls : MonoBehaviour
     private Vector3 move;
     private Transform playerposition;
     //private Transform groundCheckPosi;
+    //private float jumpForce=4f;
+    //bool isGrounded;
     
    
 
@@ -27,6 +30,25 @@ public class playerControls : MonoBehaviour
         //groundCheckPosi = gameObject.GetComponentInChildren<Transform>().transform;
         playerposition = gameObject.GetComponent<Transform>().transform;
     }
+
+    private void OnCollisionEnter(Collision collision)              //ground checks OnCollisionEnter/Exit
+    {
+        if (collision.gameObject.tag == "Tile")
+        {
+            verticalVelocity = -0.5f;
+            //isGrounded = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Tile")
+        {
+            //print("exited!");
+            verticalVelocity -= gravity /** Time.deltaTime*/;
+            //isGrounded = false;
+        }
+    }
+
     void Update()
     {
         if (Time.time < animeDuration)
@@ -48,14 +70,14 @@ public class playerControls : MonoBehaviour
 
 
 
-        if(controller.isGrounded)
+       /* if(controller.isGrounded)                             //ground check from controller
         {
             verticalVelocity = -0.5f;
         }
         else
         {
             verticalVelocity -= gravity*Time.deltaTime;
-        }
+        }*/
 
         /*if (gameObject.transform.position.y>1)
         {
@@ -72,22 +94,32 @@ public class playerControls : MonoBehaviour
         }*/
 
         move.x = Input.GetAxisRaw("Horizontal")*sideSpeed;
-       /* if (Input.GetMouseButton(0))
+        /* if (Input.GetMouseButton(0))
+         {
+             if (Input.mousePosition.x > Screen.width / 2)               //Mouse Controls
+             {
+                 move.x = sideSpeed;
+             }
+             else
+             {
+                 move.x = -sideSpeed;
+             }
+         }*/
+
+       /* if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.mousePosition.x > Screen.width / 2)               //Mouse Controls
-            {
-                move.x = sideSpeed;
-            }
-            else
-            {
-                move.x = -sideSpeed;
-            }
+            print("On ground!");
+            verticalVelocity = -0.5f;
+            move.y =jumpForce;
+        }
+        else
+        {
+            move.y = verticalVelocity;
         }*/
-        
-        
         move.y = verticalVelocity;
         
-        if((int)playerposition.position.z % 100 == 0)
+        
+        if((int)playerposition.position.z % 100 == 0)               //increasing speed
         {
             forwardSpeed += 0.25f;
         }
@@ -97,4 +129,6 @@ public class playerControls : MonoBehaviour
         
 
     }
+
+    
 }

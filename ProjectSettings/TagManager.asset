@@ -11,6 +11,10 @@ TagManager:
   - Walls
   - Tile
   - groundCheck
+  - Ground
+  - candy
+  - coin
+  - spawnCheck
   layers:
   - Default
   - TransparentFX

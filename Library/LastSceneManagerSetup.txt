@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/runGame.unity
+- path: Assets/Scenes/runGameRotated.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

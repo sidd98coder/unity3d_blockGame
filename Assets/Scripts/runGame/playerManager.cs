@@ -18,7 +18,9 @@ public class playerManager : MonoBehaviour
     void Start()
     {
         highscore.text = "highscore : " + PlayerPrefs.GetInt("HighScore", 0).ToString("0");
-        Playerpos = this.gameObject.transform;
+
+        Playerpos = this.gameObject.transform;                                  //Timer In start
+
         //velocity = gameObject.GetComponent<Rigidbody>().velocity;
     }
 
@@ -27,7 +29,7 @@ public class playerManager : MonoBehaviour
     {
         if (Time.time < animeDuration)
         {
-            statusText.text = "Get READY!!";
+            statusText.text = "Get READY!!";                ///coroutine
         }
         else
         {
@@ -54,6 +56,7 @@ public class playerManager : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle")
         {
             print("Collision occurs!!!!");
+            
             gameOver();
         }
         /*if (collision.gameObject.tag == "Tile")
@@ -89,14 +92,14 @@ public class playerManager : MonoBehaviour
     void gameOver()
     {
         this.gameObject.GetComponent<playerControls>().enabled = false;
-        
+        statusText.text = "Game Over!!";
         if ((int)Playerpos.position.z > PlayerPrefs.GetInt("HighScore", 0))
         {
             PlayerPrefs.SetInt("HighScore", (int)Playerpos.position.z);
             highscore.text = "highscore : " + Playerpos.position.z.ToString("0");
         }
-        Destroy(this.gameObject, 1f);
-        statusText.text = "Game Over!!";
+        Destroy(this.gameObject, 2f);
+        
 
     }
 }
