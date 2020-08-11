@@ -22,20 +22,22 @@ public class playerManager : MonoBehaviour
         Playerpos = this.gameObject.transform;                                  //Timer In start
 
         //velocity = gameObject.GetComponent<Rigidbody>().velocity;
+        StartCoroutine(getReady());
     }
 
     
     void Update()
     {
-        if (Time.time < animeDuration)
+        /*if (Time.time < animeDuration)
         {
             statusText.text = "Get READY!!";                ///coroutine
         }
         else
         {
-            statusText.text = "";
+            if(gameObject)
+                statusText.text = "";
 
-        }
+        }*/
         scoreText.text = Playerpos.position.z.ToString("0");                //score
         /*if (Playerpos.position.y <= 1f )
         {
@@ -101,5 +103,11 @@ public class playerManager : MonoBehaviour
         Destroy(this.gameObject, 2f);
         
 
+    }
+    IEnumerator getReady()
+    {
+        statusText.text = "Get Ready!!";
+        yield return new WaitForSeconds(2f);
+        statusText.text = "";
     }
 }

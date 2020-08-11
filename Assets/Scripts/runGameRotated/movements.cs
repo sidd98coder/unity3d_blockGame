@@ -1,52 +1,171 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class movements : MonoBehaviour
 {
-    private float speed = 7f;
+    private float speed = 8f;
     private CharacterController controller;
     bool canSwipe = false;
-    public float xDistance = 10f;
+    
+    private int currentLane = 1;        //0=left, 1=middle, 2=right
+    private float LANE_DISTANCE = 1.3f;
+    
+    
+    public SpawnManager spawnManagerScript;
+    private int lastPrefabIndex = 0;
+    private int secondLastPrefabIndex = 2;
+
+    private Transform currentTileTransform;
+    
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        //StartCoroutine(Stopper());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        //transform.position += transform.TransformDirection(Vector3.forward*speed*Time.deltaTime);
-        if (Input.GetMouseButton(0))
+        if (this.gameObject)
         {
-            if (Input.mousePosition.x > Screen.width / 2)               //Mouse Controls
+            if (Input.GetMouseButtonUp(0))
             {
-                if (!canSwipe)
+                if ((Input.mousePosition.x > Screen.width / 2) && !canSwipe)
                 {
-                    transform.Translate(Vector3.right * xDistance*Time.deltaTime);                 //move 1.4 units ?????? 1.4 is lane length
+
+                    if (currentLane < 2)
+                    {
+                        transform.Translate(LANE_DISTANCE, 0, 0);
+                    }
+                    MoveLane(true);
                 }
-                else
+                else if ((Input.mousePosition.x <= Screen.width / 2) && !canSwipe)
                 {
-                    transform.Rotate(0, 90, 0, Space.Self);
+
+                    if (currentLane > 0)
+                    {
+                        transform.Translate(-LANE_DISTANCE, 0, 0);
+                    }
+                    MoveLane(false);
                 }
             }
-            else
+            //transform.Translate(transform.forward * speed * Time.deltaTime, Space.Self);
+            transform.position += transform.forward * speed * Time.deltaTime;
+        }
+        
+    }
+
+
+    void MoveLane(bool goingRight)              //checking Current Lane Number
+    {
+        if (goingRight)
+        {
+            currentLane++;
+            if (currentLane == 3)
             {
-                if (!canSwipe)
-                {
-                    transform.Translate(Vector3.left * xDistance * Time.deltaTime);                //move 1.4 units ??????
-                }
-                else
-                {
-                    transform.Rotate(0, -90, 0, Space.Self);
-                }
+                currentLane = 2;
             }
         }
-
+        else
+        {
+            currentLane--;
+            if (currentLane == -1)
+            {
+                currentLane = 0;
+            }
+        }
     }
+
+    private void FixedUpdate()
+    {
+        if (gameObject)
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                if ((Input.mousePosition.x > Screen.width / 2) && canSwipe)
+                {
+                    transform.Rotate(0, 90.0f, 0, Space.Self);
+                }
+                else if ((Input.mousePosition.x <= Screen.width / 2) && canSwipe)
+                {
+                    transform.Rotate(0, -90.0f, 0, Space.Self);
+                }
+                if (canSwipe)
+                {
+                    int tileLength = spawnManagerScript.Tile.Count;
+                    currentTileTransform = spawnManagerScript.Tile[tileLength - 1];
+                    float ZlaneOffset = currentTileTransform.position.z - transform.position.z;
+                    float XlaneOffset = currentTileTransform.position.x - transform.position.x;
+                    float laneOffset = 0;
+                    if (currentTileTransform.rotation.y == 90f || currentTileTransform.rotation.y == -90f)
+                    {
+
+                        laneOffset = ZlaneOffset;
+                    }
+
+                    else if (currentTileTransform.rotation.y == 0f || currentTileTransform.rotation.y == 180f)
+                    {
+
+                        laneOffset = XlaneOffset;
+                    }
+
+                    Vector3 pos = transform.position;
+                    if (laneOffset >= 0.65 && laneOffset < 2.26f)                   //putting in lane 0
+                    {
+                        if (laneOffset == ZlaneOffset)
+                            pos.z = currentTileTransform.position.z - 1.3f;
+                        else if (laneOffset == XlaneOffset)
+                            pos.x = currentTileTransform.position.x - 1.3f;
+                        transform.position = pos;
+                        if((currentTileTransform.rotation.y != 180f) && (currentTileTransform.rotation.y != 90f))
+                        {
+                            currentLane = 0;
+                        }else
+                            currentLane = 2;
+
+
+                    }
+                    else if (laneOffset > -2.26f && laneOffset <= -0.65f)           //putting in lane 2
+                    {
+                        if (laneOffset == ZlaneOffset)
+                            pos.z = currentTileTransform.position.z + 1.3f;
+                        else if (laneOffset == XlaneOffset)
+                            pos.x = currentTileTransform.position.x + 1.3f;
+                        transform.position = pos;
+                        if ((currentTileTransform.rotation.y != 180f) && (currentTileTransform.rotation.y != 90f))
+                        {
+                            currentLane = 2;
+                        }
+                        else
+                            currentLane = 0;
+
+                    }
+                    else if (laneOffset > -0.65f && laneOffset < 0.65)              //putting in lane 1
+                    {
+                        if (laneOffset == ZlaneOffset)
+                            pos.z = currentTileTransform.position.z;
+                        else if (laneOffset == XlaneOffset)
+                            pos.x = currentTileTransform.position.x;
+                        transform.position = pos;
+                        currentLane = 1;
+                    }
+                }
+
+                print(transform.position);
+                canSwipe = false;                                               //can swipe only once
+
+
+            }
+        }
+    }
+
+ 
+
     private void OnTriggerEnter(Collider other)             //Checking can Swipe or not!
     {
         if (other.gameObject.tag == "swipeCheck")
@@ -60,5 +179,25 @@ public class movements : MonoBehaviour
         {
             canSwipe = false;
         }
+    }
+    private void OnCollisionEnter(Collision collision)      ////Generating random tile on collision with next tile
+    {
+        print("collided with tile");
+        if (collision.gameObject.tag == "Tile")
+        {
+            int randomIndex = secondLastPrefabIndex;
+            while (randomIndex == secondLastPrefabIndex)
+            {
+                randomIndex = Random.Range(0, 3);
+            }
+            secondLastPrefabIndex = lastPrefabIndex;
+            lastPrefabIndex = randomIndex;
+            spawnManagerScript.spawnTile(randomIndex);
+        }
+    }
+    IEnumerator Stopper()
+    {
+        print("start");
+        yield return new WaitForSeconds(15f);
     }
 }

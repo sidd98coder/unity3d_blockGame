@@ -17,19 +17,19 @@ public class Controls : MonoBehaviour
     void FixedUpdate()
     {
         
-        if(Input.GetKey("d"))
+        if(Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow))
         {
             rb.AddForce(sideForce*Time.deltaTime,0,0, ForceMode.VelocityChange);
         }
-        if(Input.GetKey("a"))
+        if(Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow))
         {
             rb.AddForce(-sideForce*Time.deltaTime,0,0,ForceMode.VelocityChange);
         }
-        if(Input.GetKey("w"))
+        if(Input.GetKey("w") || Input.GetKey(KeyCode.UpArrow))
         {
             rb.AddForce(0,0,forwardForce*Time.deltaTime);
         }
-        if(Input.GetKey("s"))
+        if(Input.GetKey("s") || Input.GetKey(KeyCode.DownArrow))
         {
             rb.AddForce(0,0,-forwardForce*Time.deltaTime);
         }
