@@ -1,14 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using UnityEditor;
+
 using UnityEngine;
-using UnityEngine.Animations;
+
 
 public class movements : MonoBehaviour
 {
+    private int currentTileNumber = -3;
     private float speed = 8f;
-    private CharacterController controller;
+    
     bool canSwipe = false;
     
     private int currentLane = 1;        //0=left, 1=middle, 2=right
@@ -20,12 +19,19 @@ public class movements : MonoBehaviour
     private int secondLastPrefabIndex = 2;
 
     private Transform currentTileTransform;
-    
 
-    // Start is called before the first frame update
+    bool isGrounded=true;
+    public Transform groundCheck;
+    public LayerMask layer;
+    private float radius = 0.25f;
+    private Rigidbody rb;
+    private const float jumpForce = 2f;
+    float verticalVelocity = -15f;
+
+    
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        rb = gameObject.GetComponent<Rigidbody>();
         //StartCoroutine(Stopper());
     }
 
@@ -33,6 +39,8 @@ public class movements : MonoBehaviour
     {
         if (this.gameObject)
         {
+
+
             if (Input.GetMouseButtonUp(0))
             {
                 if ((Input.mousePosition.x > Screen.width / 2) && !canSwipe)
@@ -53,6 +61,17 @@ public class movements : MonoBehaviour
                     }
                     MoveLane(false);
                 }
+            }
+            if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(1)) && isGrounded)
+            {
+                
+                rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                
+            }
+            if (!isGrounded)
+            {
+                
+                rb.AddForce(new Vector3(0, verticalVelocity, 0));
             }
             //transform.Translate(transform.forward * speed * Time.deltaTime, Space.Self);
             transform.position += transform.forward * speed * Time.deltaTime;
@@ -85,6 +104,9 @@ public class movements : MonoBehaviour
     {
         if (gameObject)
         {
+            isGrounded = Physics.CheckSphere(groundCheck.position, radius, layer);
+            
+
             if (Input.GetMouseButtonUp(0))
             {
                 if ((Input.mousePosition.x > Screen.width / 2) && canSwipe)
@@ -156,21 +178,35 @@ public class movements : MonoBehaviour
                     }
                 }
 
-                print(transform.position);
+                //print(transform.position);
                 canSwipe = false;                                               //can swipe only once
 
-
+                
+                
+                
             }
         }
     }
 
- 
+    
+
+
 
     private void OnTriggerEnter(Collider other)             //Checking can Swipe or not!
     {
         if (other.gameObject.tag == "swipeCheck")
         {
             canSwipe = true;
+        }
+        if (other.gameObject.tag == "halfwayDoor")
+        {
+            ++currentTileNumber;
+            print("Player is on " + currentTileNumber);
+
+            if (currentTileNumber > 1)
+            {
+                spawnManagerScript.deleteTile();
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -182,22 +218,25 @@ public class movements : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)      ////Generating random tile on collision with next tile
     {
-        print("collided with tile");
+        
         if (collision.gameObject.tag == "Tile")
         {
-            int randomIndex = secondLastPrefabIndex;
-            while (randomIndex == secondLastPrefabIndex)
+            
+
+            int randomIndex = lastPrefabIndex;//secondLastPrefabIndex;
+            while (randomIndex == lastPrefabIndex/*secondLastPrefabIndex*/)
             {
                 randomIndex = Random.Range(0, 3);
             }
-            secondLastPrefabIndex = lastPrefabIndex;
+            //secondLastPrefabIndex = lastPrefabIndex;
             lastPrefabIndex = randomIndex;
             spawnManagerScript.spawnTile(randomIndex);
         }
+        
     }
     IEnumerator Stopper()
     {
-        print("start");
+        print("stopper coroutine start");
         yield return new WaitForSeconds(15f);
     }
 }

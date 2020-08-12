@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] Objects;
     private List<Vector3> objectSpawnPoints;            //(1.3, 1, 3.5)    (0, 1, 0.5)   (-1.3, 1, 6)
 
-    private List<GameObject> activeList;
+    public List<GameObject> activeList;
     private float safeZone = 8f;
     public List<Transform> Tile;
 
@@ -96,6 +96,7 @@ public class SpawnManager : MonoBehaviour
         }
         Tile.Add(transform);
         
+        
 
         activeList.Add(go);
         objectSpawnPoints = new List<Vector3>();
@@ -110,7 +111,7 @@ public class SpawnManager : MonoBehaviour
         //print(objectSpawnPoints[0]);
     }
 
-    void deleteTile()
+    public void deleteTile()
     {
         Destroy(activeList[0]);
         activeList.RemoveAt(0);

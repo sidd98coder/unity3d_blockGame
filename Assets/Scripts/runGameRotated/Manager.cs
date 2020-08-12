@@ -1,12 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
-    int totalCoin=0;
-    int totalCandy = 0;
+    public Text TotalCoins;
+    public Text TotalCandy;
+    private int totalCoin=0;
+    private int totalCandy = 0;
     public Text coin;
     public Text candy;
     public Text score;
@@ -16,6 +18,8 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        TotalCandy.text = "Total Candy : " + PlayerPrefs.GetInt("totalCandy", 0).ToString();
+        TotalCoins.text = "Total Coins : " + PlayerPrefs.GetInt("totalCoins", 0).ToString();
         highscore.text = "HIGHSCORE : " + PlayerPrefs.GetInt("R_highScore", 0).ToString("0");
         StartCoroutine(getReady());
     }
@@ -68,6 +72,12 @@ public class Manager : MonoBehaviour
             PlayerPrefs.SetInt("R_highScore", (int)finalscore);
             highscore.text = "HIGHSCORE : " + finalscore.ToString("0");
         }
+        int candy = PlayerPrefs.GetInt("totalCandy", 0);
+        PlayerPrefs.SetInt("totalCandy", candy + totalCandy);
+        int coins = PlayerPrefs.GetInt("totalCoins", 0);
+        PlayerPrefs.SetInt("totalCoins", coins + totalCoin);
+        TotalCandy.text = "Total Candy : " + PlayerPrefs.GetInt("totalCandy", 0).ToString();
+        TotalCoins.text = "Total Coins : " + PlayerPrefs.GetInt("totalCoins", 0).ToString();
         statusText.text = "GAME OVER!";
         Destroy(gameObject);
     }

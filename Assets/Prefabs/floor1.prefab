@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7362983753118745022}
   - component: {fileID: 7362983753118745023}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: swipeCheck
   m_TagString: swipeCheck
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7362983753118745021}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.325}
-  m_LocalScale: {x: 0.12, y: 1, z: 0.0625}
+  m_LocalScale: {x: 0.18, y: 1, z: 0.0625}
   m_Children: []
   m_Father: {fileID: 2601964618845169489}
   m_RootOrder: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 559792784495690910}
   - component: {fileID: 1702734123097924131}
   - component: {fileID: 8904146080608673783}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor1
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -75,6 +75,7 @@ Transform:
   m_LocalScale: {x: 5.5, y: 1, z: 16}
   m_Children:
   - {fileID: 7362983753118745022}
+  - {fileID: 4963137636281611865}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -139,4 +140,48 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8811548096795753422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4963137636281611865}
+  - component: {fileID: 4344239057234188880}
+  m_Layer: 8
+  m_Name: tileHalfwayDoor
+  m_TagString: halfwayDoor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4963137636281611865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811548096795753422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2601964618845169489}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4344239057234188880
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811548096795753422}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 10, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}

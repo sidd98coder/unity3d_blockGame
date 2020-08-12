@@ -16,6 +16,7 @@ TagManager:
   - coin
   - spawnCheck
   - swipeCheck
+  - halfwayDoor
   layers:
   - Default
   - TransparentFX
