@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.05
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 8bf19be152d744f698327df040935cd6, type: 2}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1872,6 +1872,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7150102595331034595, guid: 647fa8867355e9446a210d4c86809a7d, type: 3}
+      propertyPath: Path.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150102595331034595, guid: 647fa8867355e9446a210d4c86809a7d, type: 3}
       propertyPath: Path.Array.data[1]
       value: 
       objectReference: {fileID: 7976505931150878041, guid: ef6a8122d82ecbd40afa7a43868fb48b, type: 3}
@@ -1887,6 +1891,10 @@ PrefabInstance:
       propertyPath: Objects.Array.data[1]
       value: 
       objectReference: {fileID: 1352914108319082658, guid: cab57d138eabe9d4a8f9f98f5523f2ff, type: 3}
+    - target: {fileID: 7150102595331034595, guid: 647fa8867355e9446a210d4c86809a7d, type: 3}
+      propertyPath: Path.Array.data[2]
+      value: 
+      objectReference: {fileID: 7976505931150878041, guid: b5fddfac084bfc84192ba40ac46c7c8a, type: 3}
     - target: {fileID: 7150102595331034596, guid: 647fa8867355e9446a210d4c86809a7d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

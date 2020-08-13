@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     private int tileNum = 0;
-    
+    int destroyTime = 20;
     public GameObject[] Path;
     public Transform tileHolderPosition;                           // (0, -0.5, 8)
     public int lastPrefabIndex = 0;
@@ -83,7 +83,7 @@ public class SpawnManager : MonoBehaviour
             transform.position += transform.TransformDirection(new Vector3(5.25f, 0f, 10.75f));
             //tileHolderPosition.transform.localPosition += new Vector3(5.25f, 0f, 10.75f);
             tileHolderPosition.Rotate(0, +90f, 0);
-            go = Instantiate(Path[1], tileHolderPosition.position, tileHolderPosition.rotation) as GameObject;
+            go = Instantiate(Path[2], tileHolderPosition.position, tileHolderPosition.rotation) as GameObject;
             
 
 
@@ -123,25 +123,25 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < 3; i++)                    // spawn points length
         {
             int obstacle = Random.Range(0, 2);                      //50% chances of getting obstacle
-            bool isVacant = true;
+            
             if (obstacle == 0)
             {
                 
-                Instantiate(Objects[0], spawnPoints[i], transform.rotation);
-                isVacant = false;
+                GameObject go1 = Instantiate(Objects[0], spawnPoints[i], transform.rotation);
+                Destroy(go1, destroyTime);
             }
             else
             {
                 int coin = Random.Range(0, 3);                      //33% chances of getting coin
                 if (coin != 0)
                 {
-                    Instantiate(Objects[1], spawnPoints[i], transform.rotation);
-                    isVacant = false;
+                    GameObject go2 = Instantiate(Objects[1], spawnPoints[i], transform.rotation);
+                    Destroy(go2, destroyTime);
                 }                                                   //17% chances of getting candy
                 else
                 {
-                    Instantiate(Objects[2], spawnPoints[i], transform.rotation);
-                    isVacant = false;
+                    GameObject go3 = Instantiate(Objects[2], spawnPoints[i], transform.rotation);
+                    Destroy(go3, destroyTime);
                 }
             }
                
