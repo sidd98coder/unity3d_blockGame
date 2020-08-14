@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class objectRotation : MonoBehaviour
 {
-    
+    //attached with coin and candy prefabs
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (this.gameObject.tag == "candy")

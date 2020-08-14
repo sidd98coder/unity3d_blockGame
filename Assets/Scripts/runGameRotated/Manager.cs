@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
+    //attached with player
+
+
     public Text TotalCoins;
     public Text TotalCandy;
     private int totalCoin=0;
@@ -25,11 +28,11 @@ public class Manager : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "coin")
+        if (other.gameObject.tag == "coin")     //collided with coin
         {
             totalCoin++;
             coin.text = totalCoin.ToString();
-        }else if (other.gameObject.tag == "candy")
+        }else if (other.gameObject.tag == "candy")      //collided with candy
         {
             totalCandy++;
             candy.text = totalCandy.ToString();
@@ -37,7 +40,7 @@ public class Manager : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Obstacle")
+        if (collision.gameObject.tag == "Obstacle")     //collided with Obstacle
         {
             gameOver();
         }
@@ -46,13 +49,13 @@ public class Manager : MonoBehaviour
     {
         if (gameObject)
         {
-            if (gameObject.transform.position.y < -2)
+            if (gameObject.transform.position.y < -2)       //if player falls down
             {
                 gameOver();
             }
             if (this.gameObject)
             {
-                finalscore = Time.time * 10;
+                finalscore = Time.time * 10;        //calculating SCORE
                 score.text = (Time.time * 10).ToString("0");
             }
         }
