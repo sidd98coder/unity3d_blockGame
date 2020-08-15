@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class SwipeControls : MonoBehaviour
@@ -39,11 +38,11 @@ public class SwipeControls : MonoBehaviour
                     {   //If the horizontal movement is greater than the vertical movement...
                         if ((lp.x > fp.x))  //If the movement was to the right)
                         {   //Right swipe
-                            Debug.Log("Right Swipe");
+                            Debug.Log("Right Swipe");       //here I will attach right movements
                         }
                         else
                         {   //Left swipe
-                            Debug.Log("Left Swipe");
+                            Debug.Log("Left Swipe");        //here I will attach left movements
                         }
                     }
                     else
@@ -52,10 +51,10 @@ public class SwipeControls : MonoBehaviour
                         {   //Up swipe
                             Debug.Log("Up Swipe");
                         }
-                        else
+                        /*else
                         {   //Down swipe
                             Debug.Log("Down Swipe");
-                        }
+                        }*/
                     }
                 }
                 else

@@ -137,22 +137,24 @@ public class movements : MonoBehaviour
         //positioning player on lanes centre after rotation
         if (currentTileNumber >= 0)
         {
+            
             int tileLength = spawnManagerScript.Tile.Count;
-            currentTileTransform = spawnManagerScript.Tile[tileLength - 3];
+            currentTileTransform = spawnManagerScript.Tile[tileLength - 4];
+            print("current tile rotation y =  "+currentTileTransform.rotation.eulerAngles.y);
             float ZlaneOffset = currentTileTransform.position.z - transform.position.z;
             float XlaneOffset = currentTileTransform.position.x - transform.position.x;
-            float laneOffset;
+            float laneOffset = 0;
             Vector3 pos = transform.position;
             //calculating which offset should be used for deciding lane 
-            if ((currentTileTransform.rotation.y == 90f) || (currentTileTransform.rotation.y == -90f))
+            if ((currentTileTransform.rotation.eulerAngles.y == 90.0f) || (currentTileTransform.rotation.eulerAngles.y == -90f))
             {
-                //print("ZlaneOffset");
+                print("ZlaneOffset");
                 laneOffset = ZlaneOffset;
                 
             }
             else//((currentTileTransform.rotation.y == 0f) || (currentTileTransform.rotation.y == 180f))
             {
-                //print("XlaneOffset");
+                print("XlaneOffset");
                 laneOffset = XlaneOffset;
             }
 
@@ -165,7 +167,7 @@ public class movements : MonoBehaviour
                     pos.x = currentTileTransform.position.x - 1.30f;
                 transform.position = pos;
                 //future lane w.r.t. tile rotation on world axis
-                if ((currentTileTransform.rotation.y != 180f) && (currentTileTransform.rotation.y != 90f))
+                if ((currentTileTransform.rotation.eulerAngles.y != 180f) && (currentTileTransform.rotation.eulerAngles.y != 90f))
                 {
                     currentLane = 0;
                 }
@@ -181,7 +183,7 @@ public class movements : MonoBehaviour
                 else if (laneOffset == XlaneOffset)
                     pos.x = currentTileTransform.position.x + 1.30f;
                 transform.position = pos;
-                if ((currentTileTransform.rotation.y != 180f) && (currentTileTransform.rotation.y != 90f))
+                if ((currentTileTransform.rotation.eulerAngles.y != 180f) && (currentTileTransform.rotation.eulerAngles.y != 90f))
                 {
                     currentLane = 2;
                 }
@@ -205,7 +207,7 @@ public class movements : MonoBehaviour
             print("tile rotation for comparision : " + currentTileTransform.rotation.y);
             print("tileLength - 3 = "+(tileLength-3));*/
 
-            print("Tile Rotation on Swipe : " + currentTileTransform.rotation.y);
+            //print("Tile Rotation on Swipe : " + currentTileTransform.rotation.y);
         }
 
 
@@ -223,7 +225,7 @@ public class movements : MonoBehaviour
         {
             
             ++currentTileNumber;
-            print("Player is on " + currentTileNumber);
+            //print("Player is on " + currentTileNumber);
 
                 int randomIndex = lastPrefabIndex;//secondLastPrefabIndex;
                 while ((randomIndex == lastPrefabIndex) || (randomIndex == secondLastPrefabIndex))      //generating random number(excluding previous)

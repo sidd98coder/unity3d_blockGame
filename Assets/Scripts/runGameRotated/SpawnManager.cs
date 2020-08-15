@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     private List<Vector3> objectSpawnPoints;            //(1.3, 1, 3.5)    (0, 1, 0.5)   (-1.3, 1, 6)
 
     public List<GameObject> activeList;     //adding created objects in a list for deleting
-    private float safeZone = 8f;
+    
     public List<Transform> Tile;            //hold transforms of every tile that will be created
 
     
@@ -35,24 +35,20 @@ public class SpawnManager : MonoBehaviour
 
     public void spawnTile(int randomSpawnPoint=1)
     {
+        //print("transform  rotation : " + transform.rotation.eulerAngles);
         GameObject go;
-        //transform.position = transform.TransformPoint(RelativePointsForNextTile(randomSpawnPoint));
-        //transform.position += transform.TransformDirection(RelativePointsForNextTile(randomSpawnPoint));        //positioning empty game object at next spawning position
-        transform.Translate(RelativePointsForNextTile(randomSpawnPoint));
+        transform.Translate(RelativePointsForNextTile(randomSpawnPoint));                                          //translateing to next position
         transform.Rotate(0f, RotateByAngle(randomSpawnPoint), 0f, Space.World);                                  //then rotating empty game object
         go = Instantiate(Path[randomSpawnPoint], transform.position, transform.rotation) as GameObject;         //spawning tile at empty game object transforms
         
         activeList.Add(go);     //adding spawned tile to list
         Tile.Add(go.transform);        //adding transforms of each tile to a list, later used for positioning on lane
-
+       
         objectSpawnPoints = new List<Vector3>();
-        objectSpawnPoints.Add(transform.TransformPoint(1.3f, 1f, 3.5f));        //creating objects spawn points relative to each tile centre 
-        objectSpawnPoints.Add(transform.TransformPoint(0f, 1f, 0.5f));
-        objectSpawnPoints.Add(transform.TransformPoint(-1.3f, 1f, 6f));
+        //creating objects spawn points relative to each tile centre
+        for (int i =0; i<3; i++)
+            objectSpawnPoints.Add(transform.TransformPoint(RelativePointsForNextObject(i)));
         SpawnObjects(objectSpawnPoints);
-
-        
-        //print("transform.rotation.y : " + transform.rotation.y);
     }
 
 
@@ -68,12 +64,12 @@ public class SpawnManager : MonoBehaviour
             }
             else
             {
-                int coin = Random.Range(0, 3);                      //33% chances of getting coin
+                int coin = Random.Range(0, 4);                      //37.5% chances of getting coin
                 if (coin != 0)
                 {
                     GameObject go2 = Instantiate(Objects[1], spawnPoints[i], transform.rotation);
                     Destroy(go2, destroyTime);
-                }                                                   //17% chances of getting candy
+                }                                                   //12.5% chances of getting candy
                 else
                 {
                     GameObject go3 = Instantiate(Objects[2], spawnPoints[i], transform.rotation);
@@ -119,6 +115,27 @@ public class SpawnManager : MonoBehaviour
                 break;
         }
         return angle;
+    }
+
+    Vector3 RelativePointsForNextObject(int num)
+    {
+        Vector3 points;
+        switch (num)
+        {
+            case 0:
+                points = new Vector3(0f, 1f, 7f);       //SP1
+                break;
+            case 1:
+                points = new Vector3(1.6f, 1f, 3.5f);   //SP2
+                break;
+            case 2:
+                points = new Vector3(-1.6f, 1f, -0.15f);    //SP3
+                break;
+            default:
+                points = Vector3.zero;
+                break;
+        }
+        return points;
     }
     public void deleteTile()
     {
