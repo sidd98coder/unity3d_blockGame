@@ -7,7 +7,7 @@ public class Manager : MonoBehaviour
 {
     //attached with player
 
-
+    movements movementScript;
     public Text TotalCoins;
     public Text TotalCandy;
     private int totalCoin=0;
@@ -53,11 +53,12 @@ public class Manager : MonoBehaviour
             {
                 gameOver();
             }
-            if (this.gameObject)
+            if (gameObject)
             {
-                finalscore = Time.time * 10;        //calculating SCORE
-                score.text = (Time.time * 10).ToString("0");
+                finalscore = Time.timeSinceLevelLoad * 10;        //calculating SCORE
+                score.text = (Time.timeSinceLevelLoad * 10).ToString("0");
             }
+            
         }
         
     }

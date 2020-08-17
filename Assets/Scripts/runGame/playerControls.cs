@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 
 using UnityEngine;
 
@@ -7,12 +6,11 @@ public class playerControls : MonoBehaviour
 {
     public float forwardSpeed = 1f;
     public float sideSpeed = 4f;
-    float verticalVelocity=0.0f;
-    float gravity = 9.81f;
+   
     private float animeDuration = 2f;
     private float LANE_DISTANCE = 1f;
     //private Transform groundCheckPos; bool isGrounded; float radius = 0.3f; LayerMask layer;
-    private Vector3 move;
+    
     private Transform playerposition;
     //private Transform groundCheckPosi;
     //private float jumpForce=4f;
@@ -88,10 +86,7 @@ public class playerControls : MonoBehaviour
         
 
     }
-    private void FixedUpdate()
-    {
-        
-    }
+   
 
 
 }

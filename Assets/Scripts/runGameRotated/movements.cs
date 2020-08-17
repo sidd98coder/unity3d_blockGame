@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 
 using UnityEngine;
-using UnityEngine.Tilemaps;
+
 
 public class movements : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class movements : MonoBehaviour
 
 
     private int currentTileNumber = -3;
-    private float speed = 8f;
+    public float speed = 8f;
     
         
     bool canSwipe = false;
@@ -28,10 +28,10 @@ public class movements : MonoBehaviour
     bool isGrounded=true;                       //jumping variables
     public Transform groundCheck;
     public LayerMask layer;
-    private float radius = 0.25f;
+    private float radius = 0.1f;
     private Rigidbody rb;
-    private const float jumpForce = 2f;
-    float verticalVelocity = -15f;
+    private const float jumpForce = 10f;
+    float gravity = -15f;
 
     
     void Start()
@@ -44,7 +44,7 @@ public class movements : MonoBehaviour
     {
         if (gameObject)
         {
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 if (!canSwipe)      //checking input when NOT ON SWIPE AREA
                 {
@@ -73,20 +73,34 @@ public class movements : MonoBehaviour
                     if (Input.mousePosition.x > Screen.width / 2)
                     {
                         transform.Rotate(0, 90f, 0, Space.Self);
-                        //print("before positioning : " + transform.position);
                     }
                     else
                     {
                         transform.Rotate(0, -90f, 0, Space.Self);
-                        //print("before positioning : " + transform.position);
                     }
                     playerPositioningOnLanes();
                     canSwipe = false;           //can swipe ONLY ONCE
                 }
                 
             }
-            
             transform.position += transform.forward * speed * Time.deltaTime;       //move FORWARD
+
+            if (isGrounded && !canSwipe && (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)))
+            {
+
+                rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);   //giving force in upward direction
+                isGrounded = false;
+            }
+            if (!isGrounded)
+            {
+
+                rb.AddForce(new Vector3(0, gravity, 0));       //giving downward movement when not grounded
+            }
+            if (Time.timeSinceLevelLoad % 60 == 0)  //increasing SPEED by 15% after 60 seconds !!
+            {
+                speed += 0.15f * speed;
+                print("SPEED INCREASED!!!!!!!!!!!!");
+            }
         }
         
     }
@@ -117,18 +131,8 @@ public class movements : MonoBehaviour
         if (gameObject)
         {
             //checking ground check !
-            isGrounded = Physics.CheckSphere(groundCheck.position, radius, layer);
-            if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(1)) && isGrounded && !canSwipe)
-            {
-
-                rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);   //giving force in upward direction
-
-            }
-            if (!isGrounded)
-            {
-
-                rb.AddForce(new Vector3(0, verticalVelocity, 0));       //giving downward movement when not grounded
-            }
+            isGrounded = Physics.CheckSphere(groundCheck.position, radius*0.9f, layer);
+           
         }
     }
 
@@ -137,10 +141,9 @@ public class movements : MonoBehaviour
         //positioning player on lanes centre after rotation
         if (currentTileNumber >= 0)
         {
-            
+
             int tileLength = spawnManagerScript.Tile.Count;
             currentTileTransform = spawnManagerScript.Tile[tileLength - 4];
-            print("current tile rotation y =  "+currentTileTransform.rotation.eulerAngles.y);
             float ZlaneOffset = currentTileTransform.position.z - transform.position.z;
             float XlaneOffset = currentTileTransform.position.x - transform.position.x;
             float laneOffset = 0;
@@ -148,13 +151,10 @@ public class movements : MonoBehaviour
             //calculating which offset should be used for deciding lane 
             if ((currentTileTransform.rotation.eulerAngles.y == 90.0f) || (currentTileTransform.rotation.eulerAngles.y == -90f))
             {
-                print("ZlaneOffset");
                 laneOffset = ZlaneOffset;
-                
             }
             else//((currentTileTransform.rotation.y == 0f) || (currentTileTransform.rotation.y == 180f))
             {
-                print("XlaneOffset");
                 laneOffset = XlaneOffset;
             }
 
@@ -200,18 +200,7 @@ public class movements : MonoBehaviour
                 transform.position = pos;
                 currentLane = 1;
             }
-
-            /*print("laneOffset : " + laneOffset);
-            print("after positioning : " + transform.position);
-            print("tile position for comparision : " + currentTileTransform.position);
-            print("tile rotation for comparision : " + currentTileTransform.rotation.y);
-            print("tileLength - 3 = "+(tileLength-3));*/
-
-            //print("Tile Rotation on Swipe : " + currentTileTransform.rotation.y);
         }
-
-
-
     }
 
     
@@ -225,7 +214,7 @@ public class movements : MonoBehaviour
         {
             
             ++currentTileNumber;
-            //print("Player is on " + currentTileNumber);
+            
 
                 int randomIndex = lastPrefabIndex;//secondLastPrefabIndex;
                 while ((randomIndex == lastPrefabIndex) || (randomIndex == secondLastPrefabIndex))      //generating random number(excluding previous)

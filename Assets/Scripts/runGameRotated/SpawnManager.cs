@@ -35,7 +35,7 @@ public class SpawnManager : MonoBehaviour
 
     public void spawnTile(int randomSpawnPoint=1)
     {
-        //print("transform  rotation : " + transform.rotation.eulerAngles);
+        
         GameObject go;
         transform.Translate(RelativePointsForNextTile(randomSpawnPoint));                                          //translateing to next position
         transform.Rotate(0f, RotateByAngle(randomSpawnPoint), 0f, Space.World);                                  //then rotating empty game object
