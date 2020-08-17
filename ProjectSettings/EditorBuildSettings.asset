@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/infinite runner/mainMenu.unity
+    guid: 35694ba5abf7e2d4297eb392ecb7d9c1
+  - enabled: 1
     path: Assets/Scenes/infinite runner/runGame.unity
     guid: 93c174a627f5a844bb5997f57854ca25
   - enabled: 1
     path: Assets/Scenes/infinite runner/runGameRotated.unity
     guid: 6a671b4bb20008d46a7f063957a31dba
-  - enabled: 1
-    path: Assets/Scenes/infinite runner/mainMenu.unity
-    guid: 35694ba5abf7e2d4297eb392ecb7d9c1
   m_configObjects: {}
